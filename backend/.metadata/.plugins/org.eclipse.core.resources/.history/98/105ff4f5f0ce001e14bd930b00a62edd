@@ -1,0 +1,115 @@
+package com.resort.ResortManagementProject.entity;
+
+import java.util.Arrays;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
+import jakarta.persistence.OneToOne;
+
+@Entity
+public class Room {
+	@Id
+	@Column(name="room_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int roomId;
+	private String roomType;
+	private String capacity;
+	@Column(name="price")
+	private double pricePerNight;
+	private String availability;
+	private String roomDetails;
+ 
+	@Lob
+    private byte[] roomImg;
+
+	public byte[] getRoomImg() {
+		return roomImg;
+	}
+
+	public void setRoomImg(byte[] roomImg) {
+		this.roomImg = roomImg;
+	}
+
+	public Room() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Room [roomId=" + roomId + ", roomType=" + roomType + ", capacity=" + capacity + ", pricePerNight="
+				+ pricePerNight + ", availability=" + availability + ", roomDetails=" + roomDetails + ", roomImg="
+				+ Arrays.toString(roomImg) + "]";
+	}
+
+	public Room(int roomId, String roomType, String capacity, double pricePerNight, String availability,
+			String roomDetails, byte[] roomImg) {
+		super();
+		this.roomId = roomId;
+		this.roomType = roomType;
+		this.capacity = capacity;
+		this.pricePerNight = pricePerNight;
+		this.availability = availability;
+		this.roomDetails = roomDetails;
+		this.roomImg = roomImg;
+	}
+
+	public int getRoomId() {
+		return roomId;
+	}
+
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
+	}
+
+	public String getRoomType() {
+		return roomType;
+	}
+
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
+	}
+
+	public String getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(String capacity) {
+		this.capacity = capacity;
+	}
+
+	public double getPricePerNight() {
+		return pricePerNight;
+	}
+
+	public void setPricePerNight(double pricePerNight) {
+		this.pricePerNight = pricePerNight;
+	}
+
+	public String getAvailability() {
+		return availability;
+	}
+
+	public void setAvailability(String availability) {
+		this.availability = availability;
+	}
+
+	public String getRoomDetails() {
+		return roomDetails;
+	}
+
+	public void setRoomDetails(String roomDetails) {
+		this.roomDetails = roomDetails;
+	}
+
+	
+	
+	
+}

@@ -1,0 +1,9 @@
+package com.resort.ResortManagementProject.service;
+
+public class BookingService {
+	 public Set<Integer> getBookedRoomIds(List<Booking> overlappingBookings) {
+	        return overlappingBookings.stream()
+	                .map(booking -> booking.getRoom().getRoomId()) // Access roomId via the Room object
+	                .collect(Collectors.toSet());
+	    }
+}

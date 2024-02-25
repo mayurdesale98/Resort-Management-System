@@ -1,0 +1,5 @@
+package com.resort.ResortManagementProject.service;
+
+public class BookingService {
+
+}

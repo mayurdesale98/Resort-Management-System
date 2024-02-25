@@ -1,0 +1,5 @@
+package com.resort.ResortManagementProject.repository;
+
+public interface ImageRepository {
+
+}

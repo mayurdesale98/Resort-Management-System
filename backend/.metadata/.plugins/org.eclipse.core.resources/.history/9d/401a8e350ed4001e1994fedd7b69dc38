@@ -1,0 +1,50 @@
+package com.resort.ResortManagementProject.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.resort.ResortManagementProject.entity.Booking;
+import com.resort.ResortManagementProject.service.BookingService;
+
+@CrossOrigin(origins = "*",allowedHeaders = "*")
+@RestController
+@RequestMapping("/booking")
+public class BookingController {
+	@Autowired
+	private BookingService bookingService;
+	
+	@GetMapping("/getAllBooking")
+	 public List<Booking> getAllBookings() {
+		System.out.println(bookingService.getAllBookings());
+		 return bookingService.getAllBookings();
+	 }
+	
+	 
+	@GetMapping("/getBooking/{id}")
+	 public Booking getBookingById(@PathVariable int id) {
+		Optional<Booking> booking=bookingService.getBookingById(id);
+		Booking bookingById=null;
+		if(booking!=null) {
+			bookingById=booking.get();
+			return bookingById;
+		}
+		else {
+			return bookingById;
+		}
+	 }
+	
+	@PostMapping("/addBooking")
+	public Booking addBooking(@RequestBody Booking newBooking) {
+		System.out.println(newBooking);
+		return bookingService.addBooking(newBooking);
+	}
+}

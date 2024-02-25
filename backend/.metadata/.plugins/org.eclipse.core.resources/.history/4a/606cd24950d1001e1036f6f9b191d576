@@ -1,0 +1,10 @@
+package com.resort.ResortManagementProject.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.resort.ResortManagementProject.entity.Room;
+
+public interface RoomRepository extends JpaRepository<Room,Integer> {
+	List<Room> findByAvailabilityAndCapacityGreaterThanEqual(String availability, int capacity);
+
+}

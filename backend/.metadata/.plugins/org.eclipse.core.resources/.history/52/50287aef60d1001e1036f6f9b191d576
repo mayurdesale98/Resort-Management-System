@@ -1,0 +1,15 @@
+package com.resort.ResortManagementProject.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.resort.ResortManagementProject.entity.Booking;
+
+public interface BookingRepository extends JpaRepository<Booking, Integer> {
+//	List<Booking> findByCheckInDateBetweenAndCheckOutDateBetween(String checkInDate1, String checkInDate2, String checkOutDate1, String checkOutDate2);
+
+
+	List<Booking> findByCheckInDateBetweenAndCheckOutDateBetween(String string, String string2, String string3,
+			String string4);
+}

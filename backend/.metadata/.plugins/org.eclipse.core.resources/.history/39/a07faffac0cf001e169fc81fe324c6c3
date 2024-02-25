@@ -1,0 +1,20 @@
+package com.resort.ResortManagementProject.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.resort.ResortManagementProject.entity.Student;
+import com.resort.ResortManagementProject.repository.StudentRepository;
+
+@Service
+public class StudentService {
+	
+	@Autowired
+	private StudentRepository studentRepository;
+
+	public Student saveStudentData(Student student) {
+		studentRepository.save(student);
+		return student;
+	}
+
+}

@@ -1,0 +1,22 @@
+package com.resort.ResortManagementProject.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.resort.ResortManagementProject.entity.Student;
+import com.resort.ResortManagementProject.service.StudentService;
+
+public class HomeController {
+	
+	@Autowired
+	private StudentService studentService;
+	
+	
+	
+	private String saveStudent(@RequestBody Student student ) {
+		
+		studentService.saveStudentData(student);
+		return null;
+		
+	}
+}

@@ -1,0 +1,31 @@
+package com.resort.ResortManagementProject.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+@Service
+public class RoomService {
+	
+	@Autowired
+	private RoomRepository roomRepo;
+	
+	public Room saveRoomData(Room room) {
+		Room saveRoom= roomRepo.save(room);
+		return saveRoom;
+	}
+
+	public Room getRoomById(int id) {
+		Optional<Room> findById = roomRepo.findById(id);
+		Room room = findById.get();
+		return room;
+	}
+	
+	public List<Room> getAllRoomData(){
+		List<Room> room= roomRepo.findAll();
+		return room;
+	}
+}

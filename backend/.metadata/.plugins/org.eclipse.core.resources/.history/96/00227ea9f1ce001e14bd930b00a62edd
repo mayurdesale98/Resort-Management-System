@@ -1,0 +1,5 @@
+package com.resort.ResortManagementProject.entity;
+
+public class Product {
+
+}

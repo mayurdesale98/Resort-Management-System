@@ -1,0 +1,64 @@
+package com.resort.ResortManagementProject.service;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Base64;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.resort.ResortManagementProject.entity.Room;
+import com.resort.ResortManagementProject.repository.RoomRepository;
+
+@Service
+public class RoomService {
+	
+	@Autowired
+	private RoomRepository roomRepo;
+	
+	public Room addRoom(Room room) {
+        return roomRepo.save(room);
+    }
+	
+	
+	public Room addImageById(Room dbRoom, String imgPath) throws IOException {
+		File file = new File(imgPath);
+        FileInputStream fileInputStream = new FileInputStream(file);
+        byte[] imgData = new byte[(int) file.length()];
+        fileInputStream.read(imgData);
+        fileInputStream.close();
+        dbRoom.setRoomImage(imgData);
+        return roomRepo.save(dbRoom);
+	}
+
+	public List<Room> getAllrooms(){
+		
+		return roomRepo.findAll();
+	}
+	
+
+	
+	public void deleteRoom(int roomId)
+	{
+		roomRepo.deleteById(roomId);
+	}
+	
+	public Room saveRoomData(Room room) {
+		Room saveRoom= roomRepo.save(room);
+		return saveRoom;
+	}
+
+	public Room getRoomById(int id) {
+		Optional<Room> findById = roomRepo.findById(id);
+		Room room = findById.get();
+		return room;
+	}
+	
+	public List<Room> getAllRoomData(){
+		List<Room> room= roomRepo.findAll();
+		return room;
+	}
+}

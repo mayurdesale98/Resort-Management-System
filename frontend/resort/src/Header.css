@@ -1,0 +1,25 @@
+.h {
+  background-color: #a9a9a9;
+  height: 100px;
+  margin-bottom: 3px;
+}
+
+.nav-item {
+  padding-right: 5px;
+}
+
+.b1 {
+  margin-right: 15px;
+}
+
+.i1 {
+  height: 75px;
+  width: 50px;
+}
+
+.logo{
+  height: 75px;
+  width: 100px;
+  border-radius: 50%;
+  margin-right: 30px;
+}

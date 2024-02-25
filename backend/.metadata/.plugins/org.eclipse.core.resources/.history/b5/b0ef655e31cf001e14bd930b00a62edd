@@ -1,0 +1,109 @@
+package com.resort.ResortManagementProject.controller;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import com.resort.ResortManagementProject.entity.Room;
+import com.resort.ResortManagementProject.service.RoomService;
+import org.springframework.core.io.FileSystemResource;
+import jakarta.annotation.Resource;
+
+@RestController
+@RequestMapping("/room")
+@CrossOrigin(origins = "*")
+public class RoomController {
+	
+	@Autowired
+	private RoomService roomService;
+
+	
+	 public static String uploadDirectory = System.getProperty("user.dir")+"\\src\\main\\webapp\\images";
+//	@PutMapping("/updRoom/{roomId}")
+//    public ResponseEntity<String> updateRoom(@PathVariable int roomId, @RequestBody Room updatedRoom) {
+//		Optional<Room> oldRoom=roomService.getRoomById(roomId);
+//			if(oldRoom.isPresent()) {
+//				Room room=oldRoom.get();
+//				roomService.updateRoom(room,updatedRoom);
+//				return ResponseEntity.status(HttpStatus.OK).body("Room details updated Successfully");
+//			}
+//			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Room details not found to update");
+//			
+//    }
+//	
+//	
+//	
+//	@DeleteMapping("/delRoom/{roomId}")
+//	public ResponseEntity<String> deleteRoom(@PathVariable int roomId){
+//		Optional<Room> delRoom=roomService.getRoomById(roomId);
+//		if(delRoom.isPresent()) {
+//			
+//			return ResponseEntity.status(HttpStatus.OK).body("Room details deleted Successfully");
+//		}
+//		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Room details not found to delete");
+//	}
+//	
+//	@GetMapping("/getRoooms")
+//	public List<Room> getAllrooms(){
+//		
+//		return roomService.getAllrooms();
+//	}
+	@PostMapping("/saveRoom")
+	public Room saveRoom(@ModelAttribute Room room, @RequestParam("image") MultipartFile file) throws IOException {
+		String originalFilename = file.getOriginalFilename();
+		Path fileNameAndPath=Paths.get(uploadDirectory, originalFilename);
+		Files.write(fileNameAndPath, file.getBytes());
+		room.setRoomImage(originalFilename);
+		Room saveRoomData= roomService.saveRoomData(room);
+		return saveRoomData;
+	}
+	
+	//fetching the data by id
+		@GetMapping("/room/{id}")
+		public ResponseEntity<Room> getRoomById(@PathVariable int id){
+			Room room = roomService.getRoomById(id);
+			return ResponseEntity.ok().body(room);
+		}
+		
+		//fetching img
+		@GetMapping("/room/getProfileImage/{id}")
+		public ResponseEntity<Resource> getProfileImage(@PathVariable int id) throws IOException{
+			//Fetching thr room obj from repository by id
+			Room room = roomService.getRoomById(id);
+			//fetch the image from student obj
+			Path imgPath =Paths.get(uploadDirectory, room.getRoomImage());
+			//Here fetching the img from that particular path
+			Resource resource = new FileSystemResource(imgPath.toFile());
+			//Here getting the content type of image
+			String contentType = Files.probeContentType(imgPath);
+			//then we parse the img to display/ return to postman
+			return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType)).body(resource);	
+		}
+		
+		//fetching the all student details
+		@GetMapping("/room/AllRoomData")
+		public List<Room> getAllRoomData(){
+			List<Room> allRoom = roomService.getAllRoomData();
+			return allRoom;
+		}
+
+	
+}

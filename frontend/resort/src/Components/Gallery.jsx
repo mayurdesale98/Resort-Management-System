@@ -18,17 +18,6 @@ export default function Gallery() {
 
   return (
 
-    // <div className='container d-flex' id='gallery'>
-        
-    //       {gallery && gallery.map((image, index) => (
-    //         <div className='row-col-xl-4 ms-3'>
-              
-    //           <div key={index} >
-    //               <img src={image.img} className="card-img-top border border-solid " />
-    //           </div>
-    //           </div>
-    //       ))}
-    //     </div>
     <div className='container' id='gallery'>
       <div className='row'>
         {gallery.map((image, index) => (

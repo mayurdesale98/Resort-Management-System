@@ -34,7 +34,7 @@ public class RoomController {
 	@Autowired
 	private RoomService roomService;
 	
-    public static String uploadDirectory = "D:\\ResortManagement\\frontend\\resort\\public";
+    public static String uploadDirectory = "D:\\CDAC_Project\\Yashraj-Paradise\\frontend\\resort\\public";
 	
 	//saving image in database
 	@PostMapping("/saveRoom")

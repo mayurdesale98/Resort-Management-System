@@ -18,26 +18,26 @@ export default function Facility() {
     }, []);
 
     return (
-<div className="container mt-3 mb-3">
-    <div className="row">
-        {facilities && facilities.map((facility, index) => (
-            <div className="col-md-6 mb-3" key={index}>
-                <div className="card">
-                    <div className="row g-0">
-                        <div className="col-md-4">
-                            <img src={facility.img} className="card-img" alt="Facility" />
-                        </div>
-                        <div className="col-md-8">
-                            <div className="card-body">
-                                <h5 className="card-title">{facility.facilityName}</h5>
-                                <p className="card-text">{facility.description}</p>                            </div>
+        <div className="container mt-3 mb-3">
+            <div className="row">
+                {facilities && facilities.map((facility, index) => (
+                    <div className="col-md-6 mb-3" key={index}>
+                        <div className="card">
+                            <div className="row g-0">
+                                <div className="col-md-4">
+                                    <img src={facility.img} className="card-img" alt="Facility" />
+                                </div>
+                                <div className="col-md-8">
+                                    <div className="card-body">
+                                        <h5 className="card-title">{facility.facilityName}</h5>
+                                        <p className="card-text">{facility.description}</p>                            </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                ))}
             </div>
-        ))}
-    </div>
-</div>
+        </div>
 
     );
 }

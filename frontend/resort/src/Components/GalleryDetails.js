@@ -13,35 +13,37 @@ export default function GalleryDetails() {
         newGallery.append('image', imgFile);
         newGallery.append('description', Description.current.value);
         console.log(newGallery);
-        axios
-            .post("http://localhost:7066/image/saveImg", newGallery, {headers: {
+
+        // axios.post("http://localhost:7066/image/saveImg", newGallery, 
+        //     {headers: 
+        //         {
+        //         'Content-Type': 'multipart/form-data'
+        //     }})
+        //     .then((res) => {
+        //         console.log(res.data);
+        //         // setMessage('Image added successfully');
+        //         // setTimeout(() => setMessage(null), 3000);
+        //     })
+        //     .catch((err) => {
+        //         console.log(err);
+        //         alert("something went wrong, please try again");
+                
+        //     });
+
+            axios.post("http://localhost:7066/image/saveImg", newGallery, {
+            headers: {
                 'Content-Type': 'multipart/form-data'
-            }})
+            }
+        })
             .then((res) => {
                 console.log(res.data);
-                // setMessage('Image added successfully');
-                // setTimeout(() => setMessage(null), 3000);
+                alert('Gallery image saved successfully');
             })
             .catch((err) => {
                 console.log(err);
-                alert("something went wrong, please try again");
-                
+                alert('failed to add image, please try again');
             });
     }
-
-    // const deleteFeedback = (feedbackId) => {
-    //     axios
-    //       .delete(`http://localhost:7066/feedback/deleteFeedback/${feedbackId}`)
-    //       .then((res) => {
-    //         console.log(res.data);
-    //         alert("Feedback deleted successfully");
-            
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //         alert("Something went wrong, please try again");
-    //       });
-    //   };
 
     return (
         <div className='row justify-content-center align-items-center vh-100 feedback'>

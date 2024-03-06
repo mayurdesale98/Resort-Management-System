@@ -11,7 +11,8 @@ export default function Footer() {
     <div className="footer-section">
             <h3><span>About</span> Us</h3>
             <p className='text-start'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Et nam voluptate error doloremque, ratione molestiae magnam reprehenderit perferendis. Provident, eius blanditiis optio tempora nam quia totam corrupti assumenda error dicta.
+            YashRaj Resort promises a memorable stay, providing ample and satisfying accommodations, flavourful dining choices, and a range of amenities. 
+            Our dedicated team ensures that every need is met with utmost care.
             </p>
             <div className='footer-icons'>
             <i className="fa-brands fa-facebook"></i>

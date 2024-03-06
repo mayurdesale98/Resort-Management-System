@@ -18,7 +18,8 @@ import FeedBack from "./Components/Feedback";
 import GalleryDetails from "./Components/GalleryDetails";
 import Facility from "./Components/Facility";
 import FacilitiesDetails from "./Components/FacilitiesDetails";
-import Payment from "./Components/Payment";
+import UserBookings from "./Components/UserBookings";
+
 const customRouter = createBrowserRouter([
     {
       path: "",
@@ -95,9 +96,10 @@ const customRouter = createBrowserRouter([
   element:<GalleryDetails/>
 },
 {
-  path: "/payment",
-  element:<Payment/>
+  path: "/userBookings",
+  element:<UserBookings/>
 }
+
       ],
     }
   ]);

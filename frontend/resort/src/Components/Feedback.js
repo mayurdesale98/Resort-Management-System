@@ -8,23 +8,29 @@ import { useNavigate } from 'react-router-dom';
 export default function FeedBack() {
   const rating = useRef(null);
   const comments = useRef("");
-  const date = useRef(null);
   const [selectedRating, setSelectedRating] = useState(0);
 
   const handleRatingChange = (rating) => {
     setSelectedRating(rating);
   };
-  const userId=Number(Cookies.get('userId'));
-  const bookingId=Number(Cookies.get('bookingId'));
-  const navigate=useNavigate();
+  const userId = Number(Cookies.get('userId'));
+  const bookingId = Number(Cookies.get('bookingId'));
+  const navigate = useNavigate();
+
   const feedbackHandle = () => {
+
+    if (!rating.current.value || !comments.current.value) {
+      alert('Please fill all feedback details.');
+      return; // Prevent further execution
+    }
+
     const newFeedback = {
       rating: rating.current.value,
       comments: comments.current.value,
-      date: date.current.value,
+      date: new Date().toISOString(),
       user: { userId: userId },
-      booking: { bookingId: bookingId } 
-  };
+      booking: { bookingId: bookingId }
+    };
     axios
       .post("http://localhost:7066/feedback/addFeedback", newFeedback)
       .then((res) => {
@@ -37,7 +43,7 @@ export default function FeedBack() {
         console.error(err);
         alert('Failed to submit feedback. Please try again.');
       });
-      // Cookies.remove('bookingId')
+    // Cookies.remove('bookingId')
   };
 
   return (
@@ -65,12 +71,7 @@ export default function FeedBack() {
             <input type='text' placeholder='Write your comments' className='form-control feedback-input' ref={comments} />
           </div>
         </div>
-        <div className='row mb-3'>
-          <div className='col'>
-            <label htmlFor='date' className='fs-3'>Date</label>
-            <input type='date' placeholder='Select Date' className='form-control feedback-input' ref={date} />
-          </div>
-        </div>
+
         <div className='d-grid'>
           <button className='btn btn-primary btn-lg' onClick={feedbackHandle}>Submit</button>
         </div>
